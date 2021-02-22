@@ -43,7 +43,7 @@ if (process.env.BUILD_ENV === 'production') {
         mode: 'production',
         output: {
             ...config.output,
-            path: path.resolve(__dirname, 'build', 'prod'),
+            path: path.resolve(__dirname, 'docs'),
         }
     }));
 } else {
