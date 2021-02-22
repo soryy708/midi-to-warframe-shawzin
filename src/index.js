@@ -152,17 +152,29 @@ subscribeAppEvent('notesParsed', notes => {
     const shawzinMaxNote = Object.values(shawzinScales).reduce((max, scale) => scale[scale.length - 1] > max ? scale[scale.length - 1] : max, -Infinity);
     const shawzinScalesRange = shawzinMaxNote - shawzinMinNote;
 
-    const minNote = notes.reduce((min, note) => !isNaN(note.noteNumber) && note.noteNumber < min ? note.noteNumber : min, Infinity);
-    const maxNote = notes.reduce((max, note) => !isNaN(note.noteNumber) && note.noteNumber > max ? note.noteNumber : max, -Infinity);
+    const topNotes = notes.filter(note => {
+        const simultaneousNotes = notes.filter(n => n.startTime === note.startTime);
+        const maxNoteNumber = simultaneousNotes.reduce((max, n) => !isNaN(n.noteNumber) && n.noteNumber > max ? n.noteNumber : max, -Infinity);
+        return note.noteNumber === maxNoteNumber;
+    });
+
+    const minNote = topNotes.reduce((min, note) => !isNaN(note.noteNumber) && note.noteNumber < min ? note.noteNumber : min, Infinity);
+    const maxNote = topNotes.reduce((max, note) => !isNaN(note.noteNumber) && note.noteNumber > max ? note.noteNumber : max, -Infinity);
     const noteRange = maxNote - minNote;
     if (noteRange > shawzinScalesRange) {
         outputElement.write('error', 'Melody range is too wide.');
         return;
     }
 
-    const noteNumbers = notes
+    const noteNumbers = topNotes
         .map(note => note.noteNumber)
-        .filter((noteNumber, i, numbersSoFar) => !isNaN(noteNumber) && !numbersSoFar.slice(0, i).includes(noteNumber));
+        .filter((noteNumber, i, numbersSoFar) => !isNaN(noteNumber) && !numbersSoFar.slice(0, i).includes(noteNumber))
+        .sort();
+
+    if (noteNumbers.length > Object.values(shawzinScales)[0].length) {
+        outputElement.write('error', 'Melody range too wide.');
+        return;
+    }
 
     const [scaleName, transposition] = (() => {
         const minTransposition = shawzinMinNote - minNote;
