@@ -4,8 +4,7 @@
     "build-prod": "cross-env BUILD_ENV=production npm run build",
     "build-dev": "cross-env BUILD_ENV=development npm run build",
     "lint": "eslint .",
-    "watch": "node script/watch",
-    "start": "node build/dev/"
+    "watch": "node script/watch"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
