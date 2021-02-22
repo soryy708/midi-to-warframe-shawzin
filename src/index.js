@@ -42,6 +42,11 @@ subscribeAppEvent('fileUploaded', () => {
     trackSelectionContainerElement.style.display = 'none';
 });
 
+subscribeAppEvent('fileUploaded', midiFile => {
+    const labelElement = document.getElementById('fileInputLabel');
+    labelElement.innerText = midiFile.name;
+});
+
 subscribeAppEvent('multipleTracksUploaded', noteTracks => {
     const trackSelectionContainerElement = document.getElementById('trackSelection');
     const trackSelectElement = document.getElementById('trackSelect');
