@@ -1,0 +1,9 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env", {"modules": "commonjs", "useBuiltIns": "entry", "corejs": "3.6.5"}
+        ]
+    ],
+    "plugins": ["@babel/transform-runtime"],
+    "ignore": ["node_modules/"]
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"/>
+        <title></title>
+
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <div class="content">
+            <p>Please select a MIDI file with one track</p>
+            <span class="fileInputContainer">
+                <input
+                    id="fileInput"
+                    type="file"
+                    accept="audio/midi, audio/x-midi"
+                />
+                <button
+                    type="button"
+                >
+                    Browse...
+                </button>
+                <label>midi.midi</label>
+            </span>
+
+            <div id="trackSelection" style="display: none">
+                <p>MIDI file has multiple tracks. Please select one</p>
+                <select id="trackSelect"></select>
+            </div>
+
+            <div id="outputContainer">
+                <div id="output" class="output"></div>
+                <button id="copyButton" title="Copy to clipboard">📄</button>
+            </div>
+        </div>
+
+        <script src="index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+html, body {
+    background-color: #333;
+    color: #fafafa;
+    font-family: sans-serif;
+    font-size: 24px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.content {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.fileInputContainer input[type="file"] {
+    display: none;
+}
+
+.fileInputContainer button {
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    color: #fafafa;
+    background-color: #282828;
+    transform: scale(1.0);
+    box-shadow: 0 0 0 #1c1c1c;
+    transition: transform 0.1s, background-color 0.1s ease-out, box-shadow 0.1s;
+}
+
+.fileInputContainer button:hover {
+    background-color: #494949;
+    box-shadow: 0px 0px 8px #1c1c1c;
+}
+
+.fileInputContainer button:active {
+    transform: scale(0.9);
+}
+
+.fileInputContainer label {
+    font-size: 1em;
+    margin-left: 0.25em;
+    text-decoration: underline;
+}
+
+#trackSelection select {
+    font-size: 1em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    color: #fafafa;
+    border: none;
+    border-radius: 3px;
+    background-color: #282828;
+    box-shadow: 0 0 0 #1c1c1c;
+    transition: background-color 0.1s ease-out, box-shadow 0.1s;
+}
+
+#trackSelection select:hover {
+    background-color: #494949;
+    box-shadow: 0px 0px 8px #1c1c1c;
+}
+
+#outputContainer {
+    display: none;
+    position: relative;
+}
+
+#outputContainer.active {
+    display: block;
+}
+
+.output {
+    font-size: 1.25em;
+    padding: 0.5em 1em;
+    box-shadow: 3px 3px 16px #1c1c1c;
+    margin-top: 1em;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: #282828;
+    overflow-wrap: break-word;
+}
+
+.output.good {
+    background-color: #82bf59;
+}
+
+.output.bad {
+    background-color: #c44545;
+}
+
+#copyButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1em;
+    padding: 0.5em;
+    color: #fafafa;
+    background-color: transparent;
+    transform: scale(1.0);
+    transition: transform 0.1s;
+}
+
+#copyButton:active {
+    transform: scale(0.9);
+}
